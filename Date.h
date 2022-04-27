@@ -48,7 +48,36 @@ public:
             std::cout << year << std::endl;
         }
     }
+    void addMonth(int months) {
+        while (month + months > 12) {
+            months -= 12 - month;
+            addYear(1);
+            month = 0;
+        }
+        month += months;
+    }
 
+    void subtractMonth(int months) {
+        while (month - months < 1) {
+            months -= month;
+            Minus_Year(1);
+            month = 12;
+        }
+        month -= months;
+    }
+
+    void addYear(int years) {
+        year += years;
+    }
+
+    void Minus_Year(int years) {
+        if (year - years > 0) {
+            year -= years;
+        }
+        else {
+            year -= years + 1;
+        }
+    }
     Date* operator +(int days) {
         Date* new_Date = new Date(month, day, year);
         while (new_Date->day + days > new_Date->Days_in_Months()) {
